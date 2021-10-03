@@ -11,18 +11,24 @@ import java.util.List;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Oders")
+@Table(name = "Orders")
 public class Order implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String address;
+    private String status;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
+    private Date created_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
+
     @ManyToOne
     @JoinColumn(name = "username")
     User user;
-    private String address;
-    private String status;
-    private Date created_at;
-    private Date updated_at;
+
     @JsonIgnore
     @OneToMany(mappedBy = "order")
     List<OrderDetail> orderDetails;

@@ -1,23 +1,20 @@
 package com.app.electronicserver.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Brands")
-public class Brand implements Serializable {
+@Table(name = "Product_images")
+public class ProductImage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String slugs;
+    private String images_url;
     @Temporal(TemporalType.DATE)
     @Column(name = "Createdate")
     private Date created_at;
@@ -25,7 +22,7 @@ public class Brand implements Serializable {
     @Column(name = "Updatedate")
     private Date update_at;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "brand")
-    List<ProductCategory> product_categories;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    Product product;
 }

@@ -9,16 +9,18 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "OderDetails")
+@Table(name = "OrderDetails")
 public class OrderDetail implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Double price;
     private Double quanity;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     Product product;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     Order order;

@@ -16,10 +16,15 @@ public class New implements Serializable {
     private Integer id;
     private String title;
     private String content;
+    private Boolean status;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
+    private Date created_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
-    Product_categorie product_categorie;
-    private Boolean status;
-    private Date created_at;
-    private Date updated_at;
+    ProductCategory product_categorie;
 }

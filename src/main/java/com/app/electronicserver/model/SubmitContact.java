@@ -12,12 +12,16 @@ import java.util.Date;
 @Table(name = "SubmitContacts")
 public class SubmitContact implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String email;
     private String content;
     private Boolean status;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
     private Date created_at;
-    private Date updated_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
 }

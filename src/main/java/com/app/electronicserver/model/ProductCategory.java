@@ -13,19 +13,29 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "Product_categories")
-public class Product_categorie implements Serializable {
+public class ProductCategory implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String slug;
     private String banner;
-    @ManyToOne
-    @JoinColumn(name = "brand id")
-    Brand brand;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
     private Date created_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
     private Date update_at;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    Brand brand;
+
     @JsonIgnore
     @OneToMany(mappedBy = "product_categorie")
     List<Product> products;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product_categorie")
+    List<New> news;
 }

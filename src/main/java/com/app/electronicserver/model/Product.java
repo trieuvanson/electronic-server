@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "Products")
 public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String slug;
@@ -25,12 +25,18 @@ public class Product implements Serializable {
     private Boolean features;
     private Boolean best_seller;
     private String thumbnail;
+    private Boolean status;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
+    private Date created_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
-    Product_categorie product_categorie;
-    private boolean status;
-    private Date created_at;
-    private Date updated_at;
+    ProductCategory product_categorie;
+
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<OrderDetail> orderDetails;

@@ -12,11 +12,15 @@ import java.util.Date;
 @Table(name = "Slides")
 public class Slide implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String images_url;
     private String link;
     private Integer postion;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
     private Date created_at;
-    private Date updated_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
 }

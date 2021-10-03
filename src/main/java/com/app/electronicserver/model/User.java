@@ -1,15 +1,16 @@
 package com.app.electronicserver.model;
 
-<<<<<<< Updated upstream
-public class User {
-=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.FetchType.EAGER;
 
 @SuppressWarnings("serial")
 @Data
@@ -27,10 +28,16 @@ public class User implements Serializable {
     private Boolean gender;
     private Date birthday;
     private Boolean status;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
     private Date created_at;
-    private Date updated_at;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Order> orders;
->>>>>>> Stashed changes
+
 }

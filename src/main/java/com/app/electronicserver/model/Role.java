@@ -13,11 +13,12 @@ import java.util.List;
 @Table(name = "Roles")
 public class Role implements Serializable {
     @Id
-    private Integer id;
+    private String id;
     private String name;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Createdate")
     private Date created_at;
-    private Date updated_at;
-    @JsonIgnore
-    @OneToMany(mappedBy = "role")
-    List<Authoritie> authorities;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Updatedate")
+    private Date update_at;
 }
