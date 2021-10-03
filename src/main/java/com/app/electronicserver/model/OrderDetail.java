@@ -1,0 +1,25 @@
+package com.app.electronicserver.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+@Data
+@Entity
+@Table(name = "OderDetails")
+public class OrderDetail implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private Double price;
+    private Double quanity;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    Product product;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    Order order;
+}
