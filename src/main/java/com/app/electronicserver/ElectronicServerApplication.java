@@ -25,29 +25,25 @@ public class ElectronicServerApplication {
 	PasswordEncoder passwordEncoder()	{
 		return new BCryptPasswordEncoder();
 	}
-	@Bean
-	CommandLineRunner run(UserService userService, BrandService brandService) {
-		return args -> {
-
+//	@Bean
+//	CommandLineRunner run(UserService userService, BrandService brandService) {
+//		return args -> {
 //			userService.saveRole(new Role("USER_ROLE", "USER_ROLE", new Date(), new Date()));
 //			userService.saveRole(new Role("ADMIN_ROLE", "ADMIN_ROLE", new Date(), new Date()));
-
+//
 //			User user1 = new User();
 //			user1.setUsername("TVS");
 //			user1.setPassword("1234");
-//			user1.setRoles(new ArrayList<>());
 //			User user2 = new User();
 //			user2.setUsername("TVS1");
 //			user2.setPassword("1234");
 //			userService.saveUser(user1);
 //			userService.saveUser(user2);
-
+//
 //			userService.addRoleToUser("TVS", "USER_ROLE");
 //			userService.addRoleToUser("TVS", "ADMIN_ROLE");
 //			userService.addRoleToUser("TVS1", "USER_ROLE");
 //			userService.addRoleToUser("TVS1", "ADMIN_ROLE");
-//			userService.addRoleToUser("TVS2", "USER_ROLE");
-//			userService.addRoleToUser("TVS2", "ADMIN_ROLE");
-		};
-	}
+//		};
+//	}
 }

@@ -34,7 +34,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
-//JWT
+
+    //JWT
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
@@ -45,15 +46,14 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     authenticationRequest.getUsername(), authenticationRequest.getPassword()
             );
-            Authentication authenticate = authenticationManager.authenticate(authentication);
-            return authenticate;
+            return authenticationManager.authenticate(authentication);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException {
         User user = (User) authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         String access_token = JWT.create()
@@ -75,7 +75,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
         UserInfo userInfo = new UserInfo(user.getUsername(),
                 user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
-        data.put("user_info", userInfo);
+        data.put("user", userInfo);
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), data);
     }
