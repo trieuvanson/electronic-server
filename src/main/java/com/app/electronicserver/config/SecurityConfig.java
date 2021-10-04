@@ -54,11 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests()
-                .antMatchers("/", "index", "/css/*", "/js/*").permitAll() //Còn nếu muốn thêm xoá sửa thì m phải đăng nhập vào nó mới cấp quyền cho m. Ví dụ nè
-                .antMatchers(GET, "/api/brand/**", "api/category/**").permitAll() //Ở đây là loại trừ, permitAll là cho phép tất cả mọi người không cần quyền cũng được. Ví dụ lát nữa m làm đến categories thì cũng phải thêm vào
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers(GET, "/api/brand/**", "api/product-category/**", "api/slide/**").permitAll()
                 .antMatchers("/api/login", "/api/token/refresh/**", "/api/user/register/**").permitAll()
-                .antMatchers(GET, "/api/user/**").hasAnyAuthority("USER_ROLE") //GET thì phải có quyền USER
-                .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("USER_ADMIN") //POST thì phải có quyền Admin
+                .antMatchers(GET, "/api/user/**").hasAnyAuthority("USER_ROLE")
+                .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("USER_ADMIN")
                 .anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
