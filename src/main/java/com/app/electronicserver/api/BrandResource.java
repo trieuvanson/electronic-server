@@ -22,7 +22,7 @@ public class BrandResource {
 
     @GetMapping("/")
     public ResponseEntity<List<Brand>> getBrands() {
-        return ResponseEntity.ok().body(BRAND_SERVICE.getUsers());
+        return ResponseEntity.ok().body(BRAND_SERVICE.getBrand());
     }
 
     @GetMapping("/{id}")
@@ -33,8 +33,6 @@ public class BrandResource {
     @PostMapping("/")
     public ResponseEntity<Brand> saveBrand(@RequestBody Brand brand) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/brand/save").toUriString());
-        brand.setCreated_at(new Date());
-        brand.setUpdate_at(new Date());
         return ResponseEntity.created(uri).body(BRAND_SERVICE.saveBrand(brand));
     }
 

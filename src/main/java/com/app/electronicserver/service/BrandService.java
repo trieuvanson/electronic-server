@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface BrandService {
 
-    List<Brand> getUsers();
+    List<Brand> getBrand();
 
     Brand saveBrand(Brand brand);
 
