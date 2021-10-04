@@ -53,7 +53,9 @@ public class UserResource {
     @PostMapping("/user/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/register").toUriString());
-        user.getRoles().add(new Role());
+        Role role = new Role();
+        role.setId("USER_ROLE");
+        user.getRoles().add(role);
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service @RequiredArgsConstructor @Transactional @Slf4j
@@ -42,6 +43,8 @@ public class UserSevicesImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         log.info("Saving new user to the database");
+        user.setCreated_at(new Date());
+        user.setUpdate_at(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
@@ -49,6 +52,8 @@ public class UserSevicesImpl implements UserService, UserDetailsService {
     @Override
     public Role saveRole(Role role) {
         log.info("Saving new role {} to the database", role.getName());
+        role.setCreated_at(new Date());
+        role.setUpdate_at(new Date());
         return roleRepo.save(role);
     }
 
