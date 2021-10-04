@@ -1,7 +1,10 @@
 package com.app.electronicserver.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +19,8 @@ import static javax.persistence.FetchType.EAGER;
 @Data
 @Entity
 @Table(name = "Users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
     @Id
     private String username;
@@ -28,10 +33,12 @@ public class User implements Serializable {
     private Boolean gender;
     private Date birthday;
     private Boolean status;
-    @Temporal(TemporalType.DATE)
+    //    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;
-    @Temporal(TemporalType.DATE)
+    //    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Updatedate")
     private Date update_at;
     @ManyToMany(fetch = EAGER)
