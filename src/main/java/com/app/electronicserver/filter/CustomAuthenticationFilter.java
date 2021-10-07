@@ -6,6 +6,7 @@ import com.app.electronicserver.responses.UserInfo;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -41,6 +46,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         try {
             AuthenticationRequest authenticationRequest = new ObjectMapper()
                     .readValue(request.getInputStream(), AuthenticationRequest.class);
+            response.setHeader("Access-Control-Allow-Origin", "*");
             log.info("Username: {}", authenticationRequest.getUsername());
             log.info("Password: {}", authenticationRequest.getPassword());
             Authentication authentication = new UsernamePasswordAuthenticationToken(
@@ -67,8 +73,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30L * 24 * 60 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
-//        response.setHeader("access_token", access_token);
-//        response.setHeader("refresh_token", refresh_token);
         Map<String, Object> data = new HashMap<>();
         LoginResponse loginResponse = new LoginResponse(access_token, refresh_token);
         data.put("tokens", loginResponse);

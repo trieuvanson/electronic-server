@@ -31,9 +31,9 @@ public class User implements Serializable {
     private String email;
     private String address;
     private Boolean gender;
+    @Temporal(TemporalType.DATE)
     private Date birthday;
     private Boolean status;
-    //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;

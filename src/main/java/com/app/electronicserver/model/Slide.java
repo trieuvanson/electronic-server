@@ -22,11 +22,9 @@ public class Slide implements Serializable {
     private String images_url;
     private String link;
     private Integer postion;
-    //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;
-    //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Updatedate")
     private Date update_at;

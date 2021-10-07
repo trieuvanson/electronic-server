@@ -15,11 +15,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import javax.servlet.http.HttpServletResponse;
+
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -55,10 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers(GET, "/api/brand/**", "api/product-category/**", "api/slide/**").permitAll()
+                .antMatchers(GET, "/api/brand/**", "/api/product-category/**", "/api/slide/**", "/api/product/**").permitAll()
                 .antMatchers("/api/login", "/api/token/refresh/**", "/api/user/register/**").permitAll()
                 .antMatchers(GET, "/api/user/**").hasAnyAuthority("USER_ROLE")
-                .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("USER_ADMIN")
+                .antMatchers(POST, "/api/user/**", "/api//role/addtouser/**").hasAnyAuthority("ADMIN_ROLE")
                 .anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
