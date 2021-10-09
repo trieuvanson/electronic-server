@@ -34,17 +34,21 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthday;
     private Boolean status;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;
-    //    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "Updatedate")
     private Date update_at;
+
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    List<CartItem> cartItems;
 }
