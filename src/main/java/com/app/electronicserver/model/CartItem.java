@@ -1,31 +1,35 @@
 package com.app.electronicserver.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 @Data
-@Entity
-@Table(name = "OrderDetails")
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetail implements Serializable {
+@Entity
+@Table(name = "CartItem")
+public class CartItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    private Integer quantity;
     private Double price;
-    private Double quantity;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "Createdate")
+    private Date created_at;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     Product product;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    Order order;
+    @JoinColumn(name = "username")
+    User user;
 }
