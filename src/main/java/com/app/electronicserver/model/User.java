@@ -31,7 +31,6 @@ public class User implements Serializable {
     private String email;
     private String address;
     private Boolean gender;
-
     @Temporal(TemporalType.DATE)
     private Date birthday;
     private Boolean status;

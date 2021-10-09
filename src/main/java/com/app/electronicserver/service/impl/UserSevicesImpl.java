@@ -1,5 +1,6 @@
 package com.app.electronicserver.service.impl;
 
+import com.app.electronicserver.model.Brand;
 import com.app.electronicserver.model.Role;
 import com.app.electronicserver.model.User;
 import com.app.electronicserver.repo.RoleRepo;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service @RequiredArgsConstructor @Transactional @Slf4j
@@ -42,13 +44,30 @@ public class UserSevicesImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         log.info("Saving new user to the database");
+        user.setCreated_at(new Date());
+        user.setUpdate_at(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
-
+    @Override
+    public User updateUser(User user) {
+        log.info("Updatting user {} to the database", user.getUsername());
+        User oldUser = userRepo.findByUsername(user.getUsername());
+        String password = oldUser.getPassword();
+        passwordEncoder.matches(password, user.getPassword());
+        oldUser.setFullname(user.getFullname());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setPhone(user.getPhone());
+        oldUser.setAddress(user.getAddress());
+        oldUser.setGender(user.getGender());
+        oldUser.setUpdate_at(new Date());
+        return userRepo.save(oldUser);
+    }
     @Override
     public Role saveRole(Role role) {
         log.info("Saving new role {} to the database", role.getName());
+        role.setCreated_at(new Date());
+        role.setUpdate_at(new Date());
         return roleRepo.save(role);
     }
 
