@@ -23,15 +23,12 @@ public class Slide implements Serializable {
     private String link;
     private Integer postion;
     private Boolean status;
-    //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;
-    //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Updatedate")
     private Date update_at;
-
     @ManyToOne
     @JoinColumn(name = "product_id")
     Product product;
