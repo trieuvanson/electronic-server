@@ -25,11 +25,12 @@ public class Product implements Serializable {
     private String slug;
     private String short_desc;
     private Double regular_price;
-    private Double slae_price;
+    private Double sale_price;
     private String description;
     private Boolean features;
     private Boolean best_seller;
     private String thumbnail;
+    private String thumbnail2;
     private Boolean status;
     //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -47,4 +48,12 @@ public class Product implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<OrderDetail> orderDetails;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    List<CartItem> cartItems;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    List<Slide> slides;
 }

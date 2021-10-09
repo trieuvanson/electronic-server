@@ -43,8 +43,12 @@ public class User implements Serializable {
     private Date update_at;
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    List<CartItem> cartItems;
 }

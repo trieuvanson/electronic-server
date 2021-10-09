@@ -23,6 +23,8 @@ public class Order implements Serializable {
     private Long id;
     private String address;
     private String status;
+    private Integer qty;
+    private Double total;
 //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")

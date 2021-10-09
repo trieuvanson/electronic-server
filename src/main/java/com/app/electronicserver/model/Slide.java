@@ -22,6 +22,7 @@ public class Slide implements Serializable {
     private String images_url;
     private String link;
     private Integer postion;
+    private Boolean status;
     //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
@@ -30,4 +31,8 @@ public class Slide implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Updatedate")
     private Date update_at;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    Product product;
 }
