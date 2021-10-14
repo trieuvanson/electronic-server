@@ -42,12 +42,6 @@ public class UserResource {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
-    @GetMapping("/users/t")
-    public ResponseEntity<String> get() {
-        userService.updateUser(new User());
-        return ResponseEntity.ok().body("userService.getUsers()");
-    }
-
     @PostMapping("/user/")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
@@ -61,9 +55,12 @@ public class UserResource {
     }
 
 
-    @PostMapping("/user/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/register").toUriString());
+    @PostMapping("/register")
+    public ResponseEntity<User> registerUser(@RequestBody User user, HttpServletResponse response) throws IOException {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/register").toUriString());
+        if (userService.getUser(user.getUsername()) != null) {
+            throw new RuntimeException("Tên đăng nhập đã tồn tại!");
+        }
         Role role = new Role();
         role.setId("USER_ROLE");
         user.getRoles().add(role);
@@ -118,7 +115,7 @@ public class UserResource {
         }
     }
 
-    @GetMapping("/user/userinfo")
+    @GetMapping("/user/infor")
     public ResponseEntity<?> getUserInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {

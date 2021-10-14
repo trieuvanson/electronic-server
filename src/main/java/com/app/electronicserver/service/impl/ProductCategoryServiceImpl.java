@@ -17,7 +17,6 @@ import java.util.List;
 @Slf4j
 public class ProductCategoryServiceImpl implements ProductCategoryService {
     private final ProductCategoryRepo productCategoryRepo;
-//    private final BrandService brandService;
 
     @Override
     public List<ProductCategory> getProductCategory() {

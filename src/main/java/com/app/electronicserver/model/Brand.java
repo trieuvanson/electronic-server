@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
+
 @SuppressWarnings("serial")
 @Data
 @Entity
@@ -23,17 +25,15 @@ public class Brand implements Serializable {
     private Integer id;
     private String name;
     private String slugs;
-    //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;
-//    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Updatedate")
     private Date update_at;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand",fetch = EAGER)
     List<ProductCategory> product_categories;
 
 }

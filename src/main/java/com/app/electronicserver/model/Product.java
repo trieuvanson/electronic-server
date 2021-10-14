@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
+
 @SuppressWarnings("serial")
 @Data
 @Entity
@@ -43,7 +45,7 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    ProductCategory product_categorie;
+    ProductCategory category;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
