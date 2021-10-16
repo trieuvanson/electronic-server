@@ -56,4 +56,8 @@ public class Product implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<Slide> slides;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    List<Favorite> favorites;
 }
