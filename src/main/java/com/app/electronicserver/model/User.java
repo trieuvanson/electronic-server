@@ -51,4 +51,12 @@ public class User implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<CartItem> cartItems;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    List<Address> addresses;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    List<Favorite> favorites;
 }
