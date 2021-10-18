@@ -1,0 +1,3 @@
+INSERT INTO `electronic-db`.cart_item (id, createdate, quantity, product_id, username) VALUES (2, '2021-10-17 09:21:13', 2, 3, 'trieuvanson');
+INSERT INTO `electronic-db`.cart_item (id, createdate, quantity, product_id, username) VALUES (3, '2021-10-17 09:21:15', 1, 4, 'trieuvanson');
+INSERT INTO `electronic-db`.cart_item (id, createdate, quantity, product_id, username) VALUES (5, '2021-10-17 13:14:14', 1, 1, 'trieuvanson');

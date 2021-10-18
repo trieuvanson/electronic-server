@@ -1,11 +1,5 @@
-create table slides
-(
-    id         int auto_increment
-        primary key,
-    createdate datetime     null,
-    images_url varchar(255) null,
-    link       varchar(255) null,
-    postion    int          null,
-    updatedate datetime     null
-);
-
+INSERT INTO `electronic-db`.slides (id, createdate, images_url, link, postion, updatedate, status, product_id) VALUES (6, '2021-10-05 18:30:25', 'http://res.cloudinary.com/trieuvanson/image/upload/v1633458625/electronic/slide/ywgngcz6pyxqt57mgdhp.png', null, 2, '2021-10-05 18:30:25', true, 1);
+INSERT INTO `electronic-db`.slides (id, createdate, images_url, link, postion, updatedate, status, product_id) VALUES (7, '2021-10-05 18:30:26', 'http://res.cloudinary.com/trieuvanson/image/upload/v1633458625/electronic/slide/d4mdgi4bwabpkwfxcijd.png', null, 3, '2021-10-05 18:30:26', true, 2);
+INSERT INTO `electronic-db`.slides (id, createdate, images_url, link, postion, updatedate, status, product_id) VALUES (8, '2021-10-05 18:30:26', 'http://res.cloudinary.com/trieuvanson/image/upload/v1633458625/electronic/slide/nhrhzkutefy36hcl9rdx.png', null, 1, '2021-10-05 18:30:26', true, 3);
+INSERT INTO `electronic-db`.slides (id, createdate, images_url, link, postion, updatedate, status, product_id) VALUES (9, '2021-10-05 18:59:24', 'http://res.cloudinary.com/trieuvanson/image/upload/v1633460363/electronic/slide/b3p4dliemiavffradzcx.png', null, 1, '2021-10-05 18:59:24', true, 4);
+INSERT INTO `electronic-db`.slides (id, createdate, images_url, link, postion, updatedate, status, product_id) VALUES (53, '2021-10-05 18:59:24', 'http://res.cloudinary.com/trieuvanson/image/upload/v1633460363/electronic/slide/b3p4dliemiavffradzcx.png', null, 1, '2021-10-05 18:59:24', true, 5);
