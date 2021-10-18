@@ -23,8 +23,8 @@ import java.util.Map;
 public class CartResource {
     private final CartService cartService;
 
-    @GetMapping("/{username}")
-    public ResponseEntity<List<CartItem>> getCartItemsByUsername(@PathVariable String username) {
+    @GetMapping("/")
+    public ResponseEntity<List<CartItem>> getCartItemsByUsername(@RequestParam("username") String username) {
         return ResponseEntity.ok().body(cartService.getCartItemsByUsername(username));
     }
 
@@ -33,9 +33,14 @@ public class CartResource {
         return ResponseEntity.ok().body(cartService.saveCartItem(cartItem));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CartItem> updateCartItem(@RequestBody CartItem cartItem, @PathVariable Integer id) {
+        return ResponseEntity.ok().body(cartService.updateCartItem(cartItem, id));
+    }
+
     @DeleteMapping("/{id}&{username}")
     public ResponseEntity<Map<String, Boolean>> deleteCartItem(@PathVariable("id") Integer id, @PathVariable("username") String username) {
-        cartService.removeCartByUserId(id, username);
+        cartService.removeCartByUsername(id, username);
         Map<String, Boolean> reponse = new HashMap<>();
         reponse.put("DELETE", Boolean.TRUE);
         return ResponseEntity.ok(reponse);

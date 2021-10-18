@@ -16,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 @RequestMapping("/api/product-image")
-public class ProductImageController {
+public class ProductImageResource {
     private final ProductImageService PRODUCT_IMAGE_SERVICE;
 
     @GetMapping("/")

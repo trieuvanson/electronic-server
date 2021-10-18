@@ -11,6 +11,7 @@ public interface CartService {
 
     List<CartItem> getCartItemsByUsername(String username);
     CartItem saveCartItem(CartItem cartItem);
-    void removeCartByUserId(Integer cartId, String username);
+    void removeCartByUsername(Integer cartId, String username);
+    CartItem updateCartItem(CartItem cartItem, Integer id);
 
 }

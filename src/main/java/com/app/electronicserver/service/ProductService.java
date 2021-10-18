@@ -7,7 +7,14 @@ import java.util.List;
 
 @Service
 public interface ProductService {
-    List<Product> getProduct();
+
+
+    List<Product> getProductsByBrandId(Integer brandId);
+
+    List<Product> getProductsByCategoryId(Integer categoryId);
+
+
+    List<Product> getProducts();
 
     Product saveProduct(Product product);
 

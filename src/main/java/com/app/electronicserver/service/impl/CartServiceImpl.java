@@ -27,18 +27,18 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartItem saveCartItem(CartItem cartItem) {
-        Optional<CartItem> old = cartRepo.getCartItemByProductIdAndUsername(cartItem.getProduct().getId(), cartItem.getUser().getUsername());
-        if (old.isPresent()) {
-            Integer quantity = cartItem.getQuantity() + old.get().getQuantity();
-            old.get().setQuantity(quantity);
-            return cartRepo.save(old.get());
-        }
         cartItem.setCreated_at(new Date());
         return cartRepo.save(cartItem);
     }
 
     @Override
-    public void removeCartByUserId(Integer cartId, String username) {
+    public void removeCartByUsername(Integer cartId, String username) {
         cartRepo.deleteCartByIdAndUsername(cartId, username);
+    }
+
+    @Override
+    public CartItem updateCartItem(CartItem cartItem, Integer id) {
+        cartItem.setId(id);
+        return cartRepo.save(cartItem);
     }
 }

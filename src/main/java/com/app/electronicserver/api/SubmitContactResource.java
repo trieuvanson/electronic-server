@@ -16,7 +16,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/submit-contact")
-public class SubmitContactController {
+public class SubmitContactResource {
     private final SubmitContactService SUBMIT_CONTACT_SERVICE;
 
     @GetMapping("/")

@@ -16,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 @RequestMapping("/api/address")
-public class AddressController {
+public class AddressResource {
     private final AddressService ADDRESS_SERVICE;
 
     @GetMapping("/")

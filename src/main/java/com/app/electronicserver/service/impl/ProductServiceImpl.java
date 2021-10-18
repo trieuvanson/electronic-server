@@ -19,7 +19,17 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
 
     @Override
-    public List<Product> getProduct() {
+    public List<Product> getProductsByBrandId(Integer brandId) {
+        return productRepo.getProductsByBrandId(brandId);
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryId(Integer categoryId) {
+        return productRepo.getProductsByCategoryId(categoryId);
+    }
+
+    @Override
+    public List<Product> getProducts() {
         return productRepo.findAll();
     }
 

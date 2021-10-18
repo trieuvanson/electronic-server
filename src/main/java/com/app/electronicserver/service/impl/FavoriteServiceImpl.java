@@ -19,8 +19,9 @@ public class FavoriteServiceImpl implements FavoriteService {
     private final FavoriteRepo favoriteRepo;
 
     @Override
-    public List<Favorite> getFavorite() {
-        return favoriteRepo.findAll();
+    public List<Favorite> getFavoritesByUsername(String username) {
+        return favoriteRepo.getFavoritesByUsername(username);
+
     }
 
     @Override
@@ -30,19 +31,13 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     @Override
+    public void removeFavoriteByUsername(Integer id, String username) {
+        favoriteRepo.deleteFavoriteByIdAndUsername(id, username);
+    }
+
+    @Override
     public Favorite updateFavorite(Favorite favorite, Integer id) {
         favorite.setId(id);
         return favoriteRepo.save(favorite);
-    }
-
-    @Override
-    public void deleteFavorite(Integer id) {
-        Favorite favorite = findById(id);
-        favoriteRepo.delete(favorite);
-    }
-
-    @Override
-    public Favorite findById(Integer id) {
-        return favoriteRepo.findById(id).get();
     }
 }

@@ -16,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 @RequestMapping("/api/new")
-public class NewController {
+public class NewsResource {
     private final NewService NEW_SERVICE;
 
     @GetMapping("/")
