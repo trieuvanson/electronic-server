@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class New implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
     private String content;

@@ -1,0 +1,1 @@
+INSERT INTO `electronic-db`.address (id, address, createdate, fullname, phone, status, updatedate, username) VALUES (1, '1', '2021-10-14 14:56:53', '1', null, null, '2021-10-14 14:56:53', null);
