@@ -25,6 +25,7 @@ public class Order implements Serializable {
     private Integer quantity;
     private Double total;
     private String note;
+    private String payment;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;

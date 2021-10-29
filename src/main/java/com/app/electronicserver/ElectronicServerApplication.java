@@ -1,9 +1,11 @@
 package com.app.electronicserver;
 
 import com.app.electronicserver.model.Brand;
+import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.Role;
 import com.app.electronicserver.model.User;
 import com.app.electronicserver.service.BrandService;
+import com.app.electronicserver.service.OrderService;
 import com.app.electronicserver.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,14 +21,16 @@ import java.util.Date;
 @SpringBootApplication
 public class ElectronicServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ElectronicServerApplication.class, args);
-	}
-	@Bean
-	PasswordEncoder passwordEncoder()	{
-		return new BCryptPasswordEncoder();
-	}
-	//BrandService brandService
+    public static void main(String[] args) {
+        SpringApplication.run(ElectronicServerApplication.class, args);
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    //BrandService brandService
 //	@Bean
 //	CommandLineRunner run(UserService userService) {
 //		return args -> {
@@ -48,4 +52,23 @@ public class ElectronicServerApplication {
 //			userService.addRoleToUser("TVS1", "ADMIN_ROLE");
 //		};
 //	}
+//    @Bean
+//    CommandLineRunner run(OrderService orderService) {
+//        return args -> {
+////			User user = new User();
+////			user.setUsername("trieuvanson");
+////
+////			Order order = new Order();
+////			order.setUser(user);
+////			orderService.saveOrder(order);
+//
+//            Order order = orderService.findById((long)1);
+////
+////            System.out.println(order.getUser().getUsername());
+////
+//            orderService.saveOrderDetails(order);
+//
+//
+//        };
+//    }
 }
