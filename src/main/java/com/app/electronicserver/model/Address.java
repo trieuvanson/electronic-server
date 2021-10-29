@@ -22,6 +22,7 @@ public class Address implements Serializable {
     private String phone;
     private String address;
     private String fullname;
+    private String type;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Createdate")
     private Date created_at;

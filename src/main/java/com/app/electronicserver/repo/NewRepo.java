@@ -1,7 +1,7 @@
 package com.app.electronicserver.repo;
 
-import com.app.electronicserver.model.New;
+import com.app.electronicserver.model.News;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface NewRepo extends JpaRepository<New, Integer> {
+public interface NewRepo extends JpaRepository<News, Integer> {
 }

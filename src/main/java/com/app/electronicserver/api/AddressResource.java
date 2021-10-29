@@ -19,13 +19,13 @@ import java.util.Map;
 public class AddressResource {
     private final AddressService ADDRESS_SERVICE;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Address>> getAddresses() {
-        return ResponseEntity.ok().body(ADDRESS_SERVICE.getAddress());
+    @GetMapping("")
+    public ResponseEntity<List<Address>> getAddressByUsername(@RequestParam("username") String username) {
+        return ResponseEntity.ok().body(ADDRESS_SERVICE.getAddressByUsername(username));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Address> getAddress(@PathVariable Integer id) {
+    public ResponseEntity<Address> getAddressById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(ADDRESS_SERVICE.findById(id));
     }
 
@@ -41,9 +41,9 @@ public class AddressResource {
         return ResponseEntity.created(uri).body(ADDRESS_SERVICE.updateAddress(address, id));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Boolean>> delete(@PathVariable("id") Integer id) {
-        ADDRESS_SERVICE.deleteAddress(id);
+    @DeleteMapping("/{id}&{username}")
+    public ResponseEntity<Map<String, Boolean>> deleteAddress(@PathVariable("id") Integer id, @PathVariable("username") String username) {
+        ADDRESS_SERVICE.removeAddressByIdAndUsername(id, username);
         Map<String, Boolean> reponse = new HashMap<>();
         reponse.put("DETELE", Boolean.TRUE);
         return ResponseEntity.ok(reponse);

@@ -2,7 +2,6 @@ package com.app.electronicserver.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,5 +43,5 @@ public class ProductCategory implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "category")
-    List<New> news;
+    List<News> news;
 }

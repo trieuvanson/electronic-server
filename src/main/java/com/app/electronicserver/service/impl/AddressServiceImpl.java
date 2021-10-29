@@ -19,8 +19,13 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepo addressRepo;
 
     @Override
-    public List<Address> getAddress() {
-        return addressRepo.findAll();
+    public Address findById(Integer id) {
+        return addressRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Address> getAddressByUsername(String username) {
+        return addressRepo.getAddressByUsername(username);
     }
 
     @Override
@@ -31,20 +36,22 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public void removeAddressByIdAndUsername(Integer id, String username) {
+        addressRepo.deleteCartByIdAndUsername(id, username);
+    }
+
+    @Override
     public Address updateAddress(Address address, Integer id) {
         address.setId(id);
         address.setUpdate_at(new Date());
+        if (address.getStatus()) {
+            getAddressByUsername(address.getUser().getUsername()).forEach(add -> {
+                if (add.getId()!= id) {
+                    add.setStatus(false);
+                    saveAddress(add);
+                }
+            });
+        }
         return addressRepo.save(address);
-    }
-
-    @Override
-    public void deleteAddress(Integer id) {
-        Address address = findById(id);
-        addressRepo.delete(address);
-    }
-
-    @Override
-    public Address findById(Integer id) {
-        return addressRepo.findById(id).get();
     }
 }

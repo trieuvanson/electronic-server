@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(name = "News")
 @NoArgsConstructor
 @AllArgsConstructor
-public class New implements Serializable {
+public class News implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -45,25 +45,5 @@ public class CartResource {
         reponse.put("DELETE", Boolean.TRUE);
         return ResponseEntity.ok(reponse);
     }
-//
-//    @PostMapping("/")
-//    public ResponseEntity<CartItem> saveCartItem(@RequestBody CartItem cartItem) {
-//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/brand/save").toUriString());
-//        return ResponseEntity.created(uri).body(cartService.saveCartItem(cartItem));
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<CartItem> updateCartItem(@PathVariable("id") Integer id, @RequestBody CartItem cartItem) {
-//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/brand/update/{id}").toUriString());
-//        return ResponseEntity.created(uri).body(cartService.updateCartItem(cartItem, id));
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Map<String, Boolean>> deleteCartItem(@PathVariable("id") Integer id) {
-//        cartService.deleteCartItem(id);
-//        Map<String, Boolean> reponse = new HashMap<>();
-//        reponse.put("DELETE", Boolean.TRUE);
-//        return ResponseEntity.ok(reponse);
-//    }
 
 }

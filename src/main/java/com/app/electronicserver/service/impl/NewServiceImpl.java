@@ -1,6 +1,6 @@
 package com.app.electronicserver.service.impl;
 
-import com.app.electronicserver.model.New;
+import com.app.electronicserver.model.News;
 import com.app.electronicserver.repo.NewRepo;
 import com.app.electronicserver.service.NewService;
 import lombok.RequiredArgsConstructor;
@@ -19,19 +19,19 @@ public class NewServiceImpl implements NewService {
     private final NewRepo newRepo;
 
     @Override
-    public List<New> getNew() {
+    public List<News> getNew() {
         return newRepo.findAll();
     }
 
     @Override
-    public New saveNew(New news) {
+    public News saveNew(News news) {
         news.setCreated_at(new Date());
         news.setUpdate_at(new Date());
         return newRepo.save(news);
     }
 
     @Override
-    public New updateNew(New news, Integer id) {
+    public News updateNew(News news, Integer id) {
         news.setId(id);
         news.setUpdate_at(new Date());
         return newRepo.save(news);
@@ -39,12 +39,12 @@ public class NewServiceImpl implements NewService {
 
     @Override
     public void deleteNew(Integer id) {
-        New news = findById(id);
+        News news = findById(id);
         newRepo.delete(news);
     }
 
     @Override
-    public New findById(Integer id) {
+    public News findById(Integer id) {
         return newRepo.findById(id).get();
     }
 }

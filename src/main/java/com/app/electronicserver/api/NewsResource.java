@@ -1,6 +1,6 @@
 package com.app.electronicserver.api;
 
-import com.app.electronicserver.model.New;
+import com.app.electronicserver.model.News;
 import com.app.electronicserver.service.NewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,23 +20,23 @@ public class NewsResource {
     private final NewService NEW_SERVICE;
 
     @GetMapping("/")
-    public ResponseEntity<List<New>> getNews() {
+    public ResponseEntity<List<News>> getNews() {
         return ResponseEntity.ok().body(NEW_SERVICE.getNew());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<New> getNew(@PathVariable Integer id) {
+    public ResponseEntity<News> getNew(@PathVariable Integer id) {
         return ResponseEntity.ok().body(NEW_SERVICE.findById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<New> saveNew(@RequestBody New news) {
+    public ResponseEntity<News> saveNew(@RequestBody News news) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/new/save").toUriString());
         return ResponseEntity.created(uri).body(NEW_SERVICE.saveNew(news));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<New> updateNew(@PathVariable("id") Integer id, @RequestBody New news) {
+    public ResponseEntity<News> updateNew(@PathVariable("id") Integer id, @RequestBody News news) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/new/update/{id}").toUriString());
         return ResponseEntity.created(uri).body(NEW_SERVICE.updateNew(news, id));
     }
