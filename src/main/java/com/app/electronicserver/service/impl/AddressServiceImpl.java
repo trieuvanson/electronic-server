@@ -30,6 +30,12 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address saveAddress(Address address) {
+        if (address.getStatus()) {
+            getAddressByUsername(address.getUser().getUsername()).forEach(add -> {
+                    add.setStatus(false);
+                    saveAddress(add);
+            });
+        }
         address.setCreated_at(new Date());
         address.setUpdate_at(new Date());
         return addressRepo.save(address);

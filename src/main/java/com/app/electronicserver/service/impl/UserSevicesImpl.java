@@ -1,6 +1,5 @@
 package com.app.electronicserver.service.impl;
 
-import com.app.electronicserver.model.Brand;
 import com.app.electronicserver.model.Role;
 import com.app.electronicserver.model.User;
 import com.app.electronicserver.repo.RoleRepo;
@@ -56,8 +55,11 @@ public class UserSevicesImpl implements UserService, UserDetailsService {
         String password = oldUser.getPassword();
         passwordEncoder.matches(password, user.getPassword());
         oldUser.setFullname(user.getFullname());
+        oldUser.setAvatar(user.getAvatar());
         oldUser.setEmail(user.getEmail());
         oldUser.setPhone(user.getPhone());
+        oldUser.setBirthday(user.getBirthday());
+        oldUser.setStatus(user.getStatus());
         oldUser.setAddress(user.getAddress());
         oldUser.setGender(user.getGender());
         oldUser.setUpdate_at(new Date());

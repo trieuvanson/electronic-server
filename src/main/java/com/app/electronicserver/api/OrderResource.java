@@ -1,10 +1,10 @@
 package com.app.electronicserver.api;
 
-import com.app.electronicserver.model.CartItem;
 import com.app.electronicserver.model.Order;
-import com.app.electronicserver.service.CartService;
+import com.app.electronicserver.model.OrderDetail;
 import com.app.electronicserver.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +22,24 @@ public class OrderResource {
     @GetMapping("")
     public ResponseEntity<List<Order>> getOrdersByUsername(@RequestParam("username") String username) {
         return ResponseEntity.ok().body(orderService.getOrdersByUsername(username));
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Order>> getAll(@RequestParam("field") String field) {
+        return ResponseEntity.ok().body(orderService.getAll(Sort.by(Sort.Direction.DESC, field)));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(orderService.findById(id));
+    }
+    @GetMapping("/order-details/{orderId}")
+    public ResponseEntity<List<OrderDetail>> getOrderDetailsByOrderId(@PathVariable Long orderId) {
+        return ResponseEntity.ok().body(orderService.getOrderDetailsByOrderId(orderId));
+    }
+    @GetMapping("/order-details/")
+    public ResponseEntity<List<OrderDetail>> getOrderDetails() {
+        return ResponseEntity.ok().body(orderService.getOrderDetails());
     }
 
     @PostMapping("/")

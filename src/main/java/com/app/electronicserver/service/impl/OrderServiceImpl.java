@@ -9,10 +9,10 @@ import com.app.electronicserver.repo.OrderRepo;
 import com.app.electronicserver.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +30,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getAll(Sort sort) {
+        return orderRepo.findAll(sort);
+    }
+
+
+    @Override
     public List<Order> getOrdersByUsername(String username) {
         return orderRepo.getOrdersByUsername(username);
     }
@@ -44,6 +50,7 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Lỗi ", e);
         }
     }
+
 
     @Override
     public void removeOrderByIdAndUsername(Long orderId, String username) {
@@ -76,5 +83,15 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Lỗi ", e);
         }
         return orderRepo.save(order);
+    }
+
+    @Override
+    public List<OrderDetail> getOrderDetailsByOrderId(Long orderId) {
+        return orderDetailRepo.getOrderDetailsByOrderId(orderId);
+    }
+
+    @Override
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetailRepo.findAll();
     }
 }

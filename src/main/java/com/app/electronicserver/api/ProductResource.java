@@ -1,7 +1,6 @@
 package com.app.electronicserver.api;
 
 import com.app.electronicserver.model.Product;
-import com.app.electronicserver.repo.ProductRepo;
 import com.app.electronicserver.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +18,13 @@ import java.util.Map;
 @RequestMapping("/api/product")
 public class ProductResource {
     private final ProductService PRODUCT_SERVICE;
-    private final ProductRepo productRepo;
     @GetMapping("/")
     public ResponseEntity<List<Product>> getProducts() {
         return ResponseEntity.ok().body(PRODUCT_SERVICE.getProducts());
+    }
+    @GetMapping("")
+    public ResponseEntity<List<Product>> findProductByKeywords(@RequestParam("timkiem") String timkiem) {
+        return ResponseEntity.ok().body(PRODUCT_SERVICE.findProductByKeywords('%' + timkiem + '%'));
     }
     @GetMapping("/brand/{brandId}")
     public ResponseEntity<List<Product>> getProductsByBrandId(@PathVariable Integer brandId) {
@@ -30,7 +32,7 @@ public class ProductResource {
     }
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<Product>> getProductsByCategoryId(@PathVariable Integer categoryId) {
-        return ResponseEntity.ok().body(productRepo.getProductsByCategoryId(categoryId));
+        return ResponseEntity.ok().body(PRODUCT_SERVICE.getProductsByCategoryId(categoryId));
     }
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Integer id) {
