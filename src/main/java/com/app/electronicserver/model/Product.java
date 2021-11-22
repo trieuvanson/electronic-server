@@ -24,6 +24,7 @@ public class Product implements Serializable {
     private String name;
     private String short_desc;
     private Double regular_price;
+    private String slug;
     private Double sale_price;
     @Column(length = 15000)
     private String description;

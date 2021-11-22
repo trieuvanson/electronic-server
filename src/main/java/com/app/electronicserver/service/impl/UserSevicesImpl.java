@@ -76,9 +76,21 @@ public class UserSevicesImpl implements UserService, UserDetailsService {
     @Override
     public void addRoleToUser(String userName, String roleName) {
         log.info("Adding role {} to user {}", roleName, userName);
+        int countUser = 0;
+        int countAdmin = 0;
         User user = userRepo.findByUsername(userName);
-        Role role = roleRepo.findById(roleName).get();
-        user.getRoles().add(role);
+        for (Role role : user.getRoles()) {
+            if (role.getName().equals("USER_ROLE")) {
+                countUser++;
+            } else if (role.getName().equals("ADMIN_ROLE")) {
+                countAdmin++;
+            }
+        }
+        if (countUser == 0 && roleName.equals("USER_ROLE") || countAdmin == 0 && roleName.equals("ADMIN_ROLE")) {
+            Role role = roleRepo.findByName(roleName);
+            user.getRoles().add(role);
+        }
+
     }
 
     @Override

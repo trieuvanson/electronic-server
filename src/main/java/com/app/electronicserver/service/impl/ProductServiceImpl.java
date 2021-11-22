@@ -48,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Product product, Integer id) {
         product.setId(id);
+        System.out.println(new Date());
         product.setUpdate_at(new Date());
         return productRepo.save(product);
     }

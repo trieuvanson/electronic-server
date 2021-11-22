@@ -60,6 +60,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order updateOrders(Order order, Long id) {
         order.setId(id);
+        System.out.println(new Date());
         order.setUpdate_at(new Date());
         order.setStatus("Mới đặt");
         return orderRepo.save(order);
