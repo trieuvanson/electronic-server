@@ -23,6 +23,8 @@ public class Order implements Serializable {
     private Long id;
     private String status;
     private Integer quantity;
+    private Double subTotal;
+    private Double discount;
     private Double total;
     private String note;
     private String payment;

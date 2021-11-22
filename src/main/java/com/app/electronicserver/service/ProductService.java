@@ -12,8 +12,7 @@ public interface ProductService {
     List<Product> getProductsByBrandId(Integer brandId);
 
     List<Product> getProductsByCategoryId(Integer categoryId);
-
-
+    List<Product> findProductByKeywords(String keywords);
     List<Product> getProducts();
 
     Product saveProduct(Product product);

@@ -11,8 +11,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
-
 @SuppressWarnings("serial")
 @Data
 @Entity
@@ -24,10 +22,11 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String slug;
     private String short_desc;
     private Double regular_price;
+    private String slug;
     private Double sale_price;
+    @Column(length = 15000)
     private String description;
     private Boolean features;
     private Boolean best_seller;
