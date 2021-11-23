@@ -21,27 +21,27 @@ public class ElectronicServerApplication {
     }
 
     //BrandService brandService
-	@Bean
-	CommandLineRunner run(UserService userService) {
-		return args -> {
-//			userService.saveRole(new Role("USER_ROLE", "USER_ROLE", new Date(), new Date()));
-//			userService.saveRole(new Role("ADMIN_ROLE", "ADMIN_ROLE", new Date(), new Date()));
-
-//			User user1 = new User();
-//			user1.setUsername("TVS");
-//			user1.setPassword("1234");
-//			User user2 = new User();
-//			user2.setUsername("TVS1234");
-//			user2.setPassword("1234");
-////			userService.saveUser(user1);
-//			userService.saveUser(user2);
-
-//			userService.addRoleToUser("TVS", "USER_ROLE");
-//			userService.addRoleToUser("TVS", "ADMIN_ROLE");
-			userService.addRoleToUser("TVS1234", "USER_ROLE");
-			userService.addRoleToUser("TVS1234", "ADMIN_ROLE");
-		};
-	}
+//	@Bean
+//	CommandLineRunner run(UserService userService) {
+//		return args -> {
+////			userService.saveRole(new Role("USER_ROLE", "USER_ROLE", new Date(), new Date()));
+////			userService.saveRole(new Role("ADMIN_ROLE", "ADMIN_ROLE", new Date(), new Date()));
+//
+////			User user1 = new User();
+////			user1.setUsername("TVS");
+////			user1.setPassword("1234");
+////			User user2 = new User();
+////			user2.setUsername("TVS1234");
+////			user2.setPassword("1234");
+//////			userService.saveUser(user1);
+////			userService.saveUser(user2);
+//
+////			userService.addRoleToUser("TVS", "USER_ROLE");
+////			userService.addRoleToUser("TVS", "ADMIN_ROLE");
+//			userService.addRoleToUser("TVS1234", "USER_ROLE");
+//			userService.addRoleToUser("TVS1234", "ADMIN_ROLE");
+//		};
+//	}
 //    @Bean
 //    CommandLineRunner run(OrderService orderService) {
 //        return args -> {
