@@ -51,4 +51,11 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> findProductByKeywords(@Param("keywords") String keywords);
     @Query("select p from Product p where p.sale_price between :min and :max order by p.sale_price asc ")
     List<Product> findProductByPriceBetween(@Param("min") double min, @Param("max") double max);
+
+    @Query(value = "select p from Product p\n" +
+            "    inner join ProductCategory pc on pc.id = p.category.id\n" +
+            "    inner join Brand b on pc.brand.id = b.id\n" +
+            "where p.name like :keywords or pc.name like :keywords or b.name like :keywords " +
+            "order by :field asc")
+    List<Product> findProductByKeywords(@Param("keywords") String keywords, @Param("field") String field);
 }
