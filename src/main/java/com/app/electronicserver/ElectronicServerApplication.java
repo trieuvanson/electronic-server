@@ -1,6 +1,6 @@
 package com.app.electronicserver;
 
-import com.app.electronicserver.service.UserService;
+import com.app.electronicserver.repo.ProductRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -57,21 +57,6 @@ public class ElectronicServerApplication {
 ////            System.out.println(order.getUser().getUsername());
 ////
 //            orderService.saveOrderDetails(order);
-//
-//
-//        };
-//    }
-//    @Bean
-//    CommandLineRunner run(ProductService productService) {
-//        return args -> {
-////			User user = new User();
-////			user.setUsername("trieuvanson");
-////
-////			Order order = new Order();
-////			order.setUser(user);
-////			orderService.saveOrder(order);
-//
-//            System.out.println(productService.findById(50).getUpdate_at());
 //
 //
 //        };

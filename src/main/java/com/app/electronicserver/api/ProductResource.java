@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 public class ProductResource {
     private final ProductService PRODUCT_SERVICE;
     @GetMapping("/")
@@ -23,8 +23,15 @@ public class ProductResource {
         return ResponseEntity.ok().body(PRODUCT_SERVICE.getProducts());
     }
     @GetMapping("")
-    public ResponseEntity<List<Product>> findProductByKeywords(@RequestParam("timkiem") String timkiem) {
-        return ResponseEntity.ok().body(PRODUCT_SERVICE.findProductByKeywords('%' + timkiem + '%'));
+    public ResponseEntity<List<Product>> findProductByKeywords(@RequestParam("timkiem") String timkiem,
+                                                               @RequestParam("filter") String filter) {
+        return ResponseEntity.ok().body(PRODUCT_SERVICE.findProductByKeywordsAndFilter('%' + timkiem + '%', filter));
+    }
+
+    @GetMapping("/price")
+    public ResponseEntity<List<Product>> getProductsByMinPriceAndMaxPrice(@RequestParam("min") Double min,
+                                                               @RequestParam("max") Double max) {
+        return ResponseEntity.ok().body(PRODUCT_SERVICE.getProductsByMinPriceAndMaxPrice(min, max));
     }
     @GetMapping("/brand/{brandId}")
     public ResponseEntity<List<Product>> getProductsByBrandId(@PathVariable Integer brandId) {
