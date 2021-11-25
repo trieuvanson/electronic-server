@@ -12,9 +12,9 @@ public interface ProductService {
     List<Product> getProductsByBrandId(Integer brandId);
 
     List<Product> getProductsByCategoryId(Integer categoryId);
-    List<Product> findProductByKeywords(String keywords);
+    List<Product> findProductByKeywordsAndFilter(String keywords, String filter);
     List<Product> getProducts();
-
+    List<Product> getProductsByMinPriceAndMaxPrice(Double minPrice, Double maxPrice);
     Product saveProduct(Product product);
 
     Product updateProduct(Product product, Integer id);

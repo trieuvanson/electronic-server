@@ -29,13 +29,30 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findProductByKeywords(String keywords) {
-        return productRepo.findProductByKeywords(keywords);
+    public List<Product> findProductByKeywordsAndFilter(String keywords, String filter) {
+        if (filter.equals("newest")) {
+            return productRepo.findProductByKeywordsAndFilterTimeAsc(keywords);
+        } else if (filter.equals("oldest")) {
+            return productRepo.findProductByKeywordsAndFilterTimeDesc(keywords);
+        } else if (filter.equals("lowest")) {
+            return productRepo.findProductByKeywordsAndFilterPriceAsc(keywords);
+        } else if (filter.equals("highest")) {
+            return productRepo.findProductByKeywordsAndFilterPriceDesc(keywords);
+        } else {
+            return productRepo.findProductByKeywords(keywords);
+        }
     }
+
+
 
     @Override
     public List<Product> getProducts() {
         return productRepo.findAll();
+    }
+
+    @Override
+    public List<Product> getProductsByMinPriceAndMaxPrice(Double minPrice, Double maxPrice) {
+        return productRepo.findProductByPriceBetween(minPrice, maxPrice);
     }
 
     @Override
