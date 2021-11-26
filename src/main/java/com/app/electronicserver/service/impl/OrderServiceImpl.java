@@ -95,4 +95,10 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDetail> getOrderDetails() {
         return orderDetailRepo.findAll();
     }
+
+    @Override
+    public List<Order> getOrdersByFilter(String fullname, String status, String payment, Double max, Date minDate, Date maxDate) {
+        System.out.println(fullname + " " + status + " " + payment + " " + max + " " + minDate + " " + maxDate);
+        return orderRepo.getOrdersByFilter('%' + fullname + '%', '%' + status + '%', '%' + payment + '%', max, minDate, maxDate);
+    }
 }

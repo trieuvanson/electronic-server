@@ -5,6 +5,7 @@ import com.app.electronicserver.model.OrderDetail;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,4 +19,5 @@ public interface OrderService {
     Order saveOrderDetails(Order order);
     List<OrderDetail> getOrderDetailsByOrderId(Long orderId);
     List<OrderDetail> getOrderDetails();
+    List<Order> getOrdersByFilter(String fullname, String status, String payment, Double max, Date minDate, Date maxDate);
 }
