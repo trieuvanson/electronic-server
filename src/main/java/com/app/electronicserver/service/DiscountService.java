@@ -1,0 +1,9 @@
+package com.app.electronicserver.service;
+
+import com.app.electronicserver.model.Discount;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface DiscountService {
+    Discount getDiscount(String code);
+}

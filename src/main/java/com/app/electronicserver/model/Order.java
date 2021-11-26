@@ -24,7 +24,6 @@ public class Order implements Serializable {
     private String status;
     private Integer quantity;
     private Double subTotal;
-    private Double discount;
     private Double total;
     private String note;
     private String payment;
@@ -40,6 +39,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "address")
     Address address;
+    @ManyToOne
+    @JoinColumn(name = "discount")
+    Discount discount;
     @JsonIgnore
     @OneToMany(mappedBy = "order")
     List<OrderDetail> orderDetails;
