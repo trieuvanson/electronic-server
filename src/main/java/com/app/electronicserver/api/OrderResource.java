@@ -2,7 +2,9 @@ package com.app.electronicserver.api;
 
 import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.OrderDetail;
+import com.app.electronicserver.reports.QuantityAndName;
 import com.app.electronicserver.service.OrderService;
+import com.app.electronicserver.service.ReportService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -20,7 +22,6 @@ import java.util.Map;
 @RequestMapping("/api/order")
 public class OrderResource {
     private final OrderService orderService;
-
     @GetMapping("")
     public ResponseEntity<List<Order>> getOrdersByUsername(@RequestParam("username") String username) {
         return ResponseEntity.ok().body(orderService.getOrdersByUsername(username));
@@ -55,6 +56,7 @@ public class OrderResource {
     public ResponseEntity<List<OrderDetail>> getOrderDetails() {
         return ResponseEntity.ok().body(orderService.getOrderDetails());
     }
+
 
     @PostMapping("/")
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {

@@ -1,6 +1,7 @@
 package com.app.electronicserver;
 
 import com.app.electronicserver.model.Order;
+import com.app.electronicserver.repo.OrderDetailRepo;
 import com.app.electronicserver.repo.OrderRepo;
 import com.app.electronicserver.repo.ProductRepo;
 import com.app.electronicserver.service.OrderService;
@@ -63,6 +64,15 @@ public class ElectronicServerApplication {
 ////
 //            orderService.saveOrderDetails(order);
 //
+//
+//        };
+//    }
+
+
+//    @Bean
+//    CommandLineRunner run(OrderDetailRepo orderService) {
+//        return args -> {
+//            orderService.getQuantityAndNameFormOrderDetail().forEach(p -> System.out.println(p.getName()));
 //
 //        };
 //    }

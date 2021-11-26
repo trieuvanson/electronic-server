@@ -4,6 +4,7 @@ import com.app.electronicserver.model.CartItem;
 import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.OrderDetail;
 import com.app.electronicserver.repo.CartRepo;
+import com.app.electronicserver.repo.DiscountRepo;
 import com.app.electronicserver.repo.OrderDetailRepo;
 import com.app.electronicserver.repo.OrderRepo;
 import com.app.electronicserver.service.OrderService;
@@ -24,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepo orderRepo;
     private final OrderDetailRepo orderDetailRepo;
     private final CartRepo cartRepo;
+    private final DiscountRepo discountRepo;
     @Override
     public Order findById(Long id) {
         return orderRepo.findById(id).get();
@@ -45,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
         try {
             order.setCreated_at(new Date());
             order.setUpdate_at(new Date());
+            if (order.getDiscount() != null) {
+
+            }
             return orderRepo.save(order);
         } catch (Exception e) {
             throw new RuntimeException("Lỗi ", e);

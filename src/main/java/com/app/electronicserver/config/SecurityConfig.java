@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(GET, "/api/brand/**", "/api/product-category/**", "/api/slide/**", "/api/products/**").permitAll()
                 .antMatchers("/api/login", "/api/token/refresh/**", "/api/register/**").permitAll()
                 .antMatchers(GET, "/api/user/infor", "/api/cart/**", "/api/discount/**").hasAnyAuthority("USER_ROLE")
-                .antMatchers(GET, "/api/user/**").hasAnyAuthority("ADMIN_ROLE")
+                .antMatchers(GET, "/api/user/**", "/api/reports/**").hasAnyAuthority("ADMIN_ROLE")
                 .antMatchers(POST, "/api/user/**", "/api//role/addtouser/**").hasAnyAuthority("ADMIN_ROLE")
                 .anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
