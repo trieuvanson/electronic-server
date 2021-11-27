@@ -21,5 +21,4 @@ public interface OrderService {
     List<OrderDetail> getOrderDetailsByOrderId(Long orderId);
     List<OrderDetail> getOrderDetails();
     List<Order> getOrdersByFilter(String fullname, String status, String payment, Double max, Date minDate, Date maxDate);
-    List<OrderRevenueByMothnAndYear> getOrderRevenueByMonthAndYear(Integer year);
 }

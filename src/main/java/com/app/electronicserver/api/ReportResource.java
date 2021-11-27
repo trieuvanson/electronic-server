@@ -4,6 +4,7 @@ import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.Slide;
 import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
 import com.app.electronicserver.reports.QuantityAndName;
+import com.app.electronicserver.reports.TopCategoriesByBrand;
 import com.app.electronicserver.service.OrderService;
 import com.app.electronicserver.service.ReportService;
 import com.app.electronicserver.service.SlideService;
@@ -23,7 +24,6 @@ import java.util.Map;
 @RequestMapping("/api/reports")
 public class ReportResource {
     private final ReportService reportService;
-    private final OrderService orderService;
 
     @GetMapping("/top-brands")
     public ResponseEntity<List<QuantityAndName>> getTopBrands() {
@@ -31,8 +31,14 @@ public class ReportResource {
     }
 
     @GetMapping("/orders/{year}")
-    public ResponseEntity<List<OrderRevenueByMothnAndYear>> getOrderRevenueByMonthAndYear(@PathVariable("year") Integer year) {
-        return ResponseEntity.ok().body(orderService.getOrderRevenueByMonthAndYear(year));
+    public ResponseEntity<List<OrderRevenueByMothnAndYear>> topCategoriesByBrand(@PathVariable("year") Integer year) {
+        return ResponseEntity.ok().body(reportService.getOrderRevenueByMonthAndYear(year));
     }
+    @GetMapping("/categories")
+    public ResponseEntity<List<TopCategoriesByBrand>> getOrderRevenueByMonthAndYear(@RequestParam("bname") String bname) {
+        return ResponseEntity.ok().body(reportService.topCategoriesByBrand(bname));
+    }
+
+
 
 }

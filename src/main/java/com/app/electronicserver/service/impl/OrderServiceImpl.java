@@ -108,8 +108,4 @@ public class OrderServiceImpl implements OrderService {
         return orderRepo.getOrdersByFilter('%' + fullname + '%', '%' + status + '%', '%' + payment + '%', max, minDate, maxDate);
     }
 
-    @Override
-    public List<OrderRevenueByMothnAndYear> getOrderRevenueByMonthAndYear(Integer year) {
-        return orderRepo.getOrderRevenueByMonthAndYear(year);
-    }
 }
