@@ -17,4 +17,5 @@ public interface ProductCategoryService {
     void deleteBrand(Integer id);
 
     ProductCategory findById(Integer id);
+    List<ProductCategory> getProductCategoriesByFilter(String search, String brandName);
 }

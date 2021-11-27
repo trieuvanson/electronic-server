@@ -47,4 +47,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public ProductCategory findById(Integer id) {
         return productCategoryRepo.findById(id).get();
     }
+
+    @Override
+    public List<ProductCategory> getProductCategoriesByFilter(String search, String brandName) {
+        return productCategoryRepo.getProductCategoriesByFilter('%' + search + '%', '%' + brandName + '%');
+    }
 }

@@ -26,6 +26,12 @@ public class ProductCategoryResource {
         return ResponseEntity.ok().body(PRODUCT_CATEGORY_SERVICE.getProductCategory());
     }
 
+    @GetMapping("/filters")
+    public ResponseEntity<List<ProductCategory>> getProductCategoriesByFilter(@RequestParam("search") String search,
+                                                                              @RequestParam("brandName") String brandName) {
+        return ResponseEntity.ok().body(PRODUCT_CATEGORY_SERVICE.getProductCategoriesByFilter(search, brandName));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ProductCategory> getProductCategory(@PathVariable Integer id) {
         return ResponseEntity.ok().body(PRODUCT_CATEGORY_SERVICE.findById(id));
