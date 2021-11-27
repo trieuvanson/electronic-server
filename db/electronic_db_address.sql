@@ -1,1 +1,3 @@
-INSERT INTO `electronic-db`.address (id, address, createdate, fullname, phone, status, updatedate, username) VALUES (1, '1', '2021-10-14 14:56:53', '1', null, null, '2021-10-14 14:56:53', null);
+INSERT INTO `electronic-db`.address (id, address, createdate, fullname, phone, status, type, updatedate, username) VALUES (1, 'THON 7, XA DAK NDRUNG, DAK SONG, DAK NONG', '2021-11-22 17:21:44', 'SON TRIEU VAN', '0969894840', true, true, '2021-11-22 17:21:44', 'TVS1234');
+INSERT INTO `electronic-db`.address (id, address, createdate, fullname, phone, status, type, updatedate, username) VALUES (2, 'THON 7, XA DAK NDRUNG, DAK SONG, DAK NONG', '2021-11-27 01:31:24', 'SON TRIEU VAN', '0969894840', false, true, '2021-11-27 01:31:24', 'TVS');
+INSERT INTO `electronic-db`.address (id, address, createdate, fullname, phone, status, type, updatedate, username) VALUES (3, 'Dak NDrung - Dak Song-DAK NONG', null, 'TRIEU VAN SON', '123', true, true, '2021-11-27 01:31:24', 'TVS');

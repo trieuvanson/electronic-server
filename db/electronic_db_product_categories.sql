@@ -20,3 +20,7 @@ INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, sl
 INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (20, null, '2021-10-20 21:38:21', 'Frederique Constant', null, '2021-10-20 21:38:26', 6);
 INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (21, null, '2021-10-20 21:38:22', 'Huami Amazfit', null, '2021-10-20 21:38:26', 5);
 INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (22, null, '2021-10-20 21:38:23', 'Kidcare', null, '2021-10-20 21:38:27', 5);
+INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (23, null, '2021-11-22 17:07:32', 'Xiaomi', null, '2021-11-22 17:07:32', 3);
+INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (24, null, '2021-11-22 17:07:32', 'iPhone', null, '2021-11-22 17:07:32', 3);
+INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (25, null, '2021-11-22 17:07:32', 'Samsung', null, '2021-11-22 17:07:32', 3);
+INSERT INTO `electronic-db`.product_categories (id, banner, createdate, name, slug, updatedate, brand_id) VALUES (26, null, '2021-11-22 17:07:32', 'Huawei', null, '2021-11-22 17:07:32', 3);
