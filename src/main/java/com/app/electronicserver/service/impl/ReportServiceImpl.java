@@ -5,6 +5,7 @@ import com.app.electronicserver.repo.OrderRepo;
 import com.app.electronicserver.repo.ProductCategoryRepo;
 import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
 import com.app.electronicserver.reports.QuantityAndName;
+import com.app.electronicserver.reports.RevenueByYear;
 import com.app.electronicserver.reports.TopCategoriesByBrand;
 import com.app.electronicserver.service.ProductCategoryService;
 import com.app.electronicserver.service.ReportService;
@@ -38,5 +39,10 @@ public class ReportServiceImpl  implements ReportService {
     @Override
     public List<TopCategoriesByBrand> topCategoriesByBrand(String bname) {
         return productCategoryRepo.topCategoriesByBrand('%' + bname + '%');
+    }
+
+    @Override
+    public List<RevenueByYear> getRevenueByYear(Integer year) {
+        return orderRepo.getRevenueByYear(year);
     }
 }

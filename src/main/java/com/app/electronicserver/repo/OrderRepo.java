@@ -4,6 +4,7 @@ import com.app.electronicserver.model.CartItem;
 import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.Product;
 import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
+import com.app.electronicserver.reports.RevenueByYear;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,6 +30,11 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
             "where year(o.created_at) = :year and o.status like '%Đã nhận hàng%' " +
             "group by month(o.created_at)")
     List<OrderRevenueByMothnAndYear> getOrderRevenueByMonthAndYear(Integer year);
+
+    @Query("select new RevenueByYear(month(o.created_at), sum(o.total)) from Order o " +
+            "where year(o.created_at) = :year and o.status like '%Đã nhận hàng%' " +
+            "group by month(o.created_at)")
+    List<RevenueByYear> getRevenueByYear(@Param("year") Integer year);
 
 
 }
