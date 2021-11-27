@@ -2,6 +2,7 @@ package com.app.electronicserver.service;
 
 import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.OrderDetail;
+import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +21,5 @@ public interface OrderService {
     List<OrderDetail> getOrderDetailsByOrderId(Long orderId);
     List<OrderDetail> getOrderDetails();
     List<Order> getOrdersByFilter(String fullname, String status, String payment, Double max, Date minDate, Date maxDate);
+    List<OrderRevenueByMothnAndYear> getOrderRevenueByMonthAndYear(Integer year);
 }

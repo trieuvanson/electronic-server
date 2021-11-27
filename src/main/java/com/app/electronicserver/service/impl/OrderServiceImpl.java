@@ -7,6 +7,7 @@ import com.app.electronicserver.repo.CartRepo;
 import com.app.electronicserver.repo.DiscountRepo;
 import com.app.electronicserver.repo.OrderDetailRepo;
 import com.app.electronicserver.repo.OrderRepo;
+import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
 import com.app.electronicserver.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -105,5 +106,10 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrdersByFilter(String fullname, String status, String payment, Double max, Date minDate, Date maxDate) {
         System.out.println(fullname + " " + status + " " + payment + " " + max + " " + minDate + " " + maxDate);
         return orderRepo.getOrdersByFilter('%' + fullname + '%', '%' + status + '%', '%' + payment + '%', max, minDate, maxDate);
+    }
+
+    @Override
+    public List<OrderRevenueByMothnAndYear> getOrderRevenueByMonthAndYear(Integer year) {
+        return orderRepo.getOrderRevenueByMonthAndYear(year);
     }
 }

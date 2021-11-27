@@ -42,6 +42,8 @@ public class OrderResource {
         return ResponseEntity.ok().body(orderService.getAll(Sort.by(Sort.Direction.DESC, field)));
     }
 
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(orderService.findById(id));
