@@ -65,7 +65,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Product product, Integer id) {
         product.setId(id);
-        System.out.println(new Date());
         product.setUpdate_at(new Date());
         return productRepo.save(product);
     }
@@ -79,5 +78,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findById(Integer id) {
         return productRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Product> getProductsByFilter(String search, String pcName, String bName, Date minDate, Date maxDate, Double maxPrice, boolean status, boolean features, boolean bestSeller) {
+        return productRepo.getProductsByFilter('%' + search + '%', '%' + pcName + '%', '%' + bName + '%', minDate, maxDate, maxPrice, status, features, bestSeller);
     }
 }

@@ -2,12 +2,14 @@ package com.app.electronicserver.api;
 
 import com.app.electronicserver.model.Product;
 import com.app.electronicserver.service.ProductService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,16 @@ public class ProductResource {
     @GetMapping("/")
     public ResponseEntity<List<Product>> getProducts() {
         return ResponseEntity.ok().body(PRODUCT_SERVICE.getProducts());
+    }
+
+    @GetMapping("/filters")
+    public ResponseEntity<List<Product>> getProductsByFilter(@RequestParam("search") String search, @RequestParam("pcname") String pcname,
+                                                             @RequestParam("bname") String bname, @RequestParam("minDate") Date minDate,
+                                                             @RequestParam("maxDate") Date maxDate, @RequestParam("maxPrice") Double maxPrice,
+                                                             @RequestParam("status") boolean status, @RequestParam("features") boolean features,
+                                                             @RequestParam("bestSeller") boolean bestSeller)
+    {
+        return ResponseEntity.ok().body(PRODUCT_SERVICE.getProductsByFilter(search, pcname, bname, minDate, maxDate, maxPrice, status, features, bestSeller));
     }
     @GetMapping("")
     public ResponseEntity<List<Product>> findProductByKeywords(@RequestParam("timkiem") String timkiem,
