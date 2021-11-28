@@ -1,6 +1,7 @@
 package com.app.electronicserver;
 
 import com.app.electronicserver.repo.OrderRepo;
+import com.app.electronicserver.service.CommentsService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -64,11 +65,9 @@ public class ElectronicServerApplication {
 
 
     @Bean
-    CommandLineRunner run(OrderRepo orderService) {
+    CommandLineRunner run(CommentsService commentsService) {
         return args -> {
-//            orderService.getOrderRevenueByMonthAndYear(2021).forEach(System.out::println);
-//            System.out.println(orderService.getOrderRevenueByMonthAndYear(2021).size());
-//            System.out.println(orderService.findAllByShipmentDate(2021).size());
+            System.out.println(commentsService.getCommentsByProductId(1).size());
         };
     }
 

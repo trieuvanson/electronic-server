@@ -45,13 +45,13 @@ public class OrderResource {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(orderService.findById(id));
+    public ResponseEntity<Order> getOrderById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok().body(orderService.findById(Long.valueOf(id)));
     }
 
     @GetMapping("/order-details/{orderId}")
-    public ResponseEntity<List<OrderDetail>> getOrderDetailsByOrderId(@PathVariable Long orderId) {
-        return ResponseEntity.ok().body(orderService.getOrderDetailsByOrderId(orderId));
+    public ResponseEntity<List<OrderDetail>> getOrderDetailsByOrderId(@PathVariable Integer orderId) {
+        return ResponseEntity.ok().body(orderService.getOrderDetailsByOrderId(Long.valueOf(orderId)));
     }
 
     @GetMapping("/order-details/")
