@@ -85,6 +85,10 @@ public class OrderServiceImpl implements OrderService {
                     orderDetail.setProduct(c.getProduct());
                     orderDetailRepo.save(orderDetail);
             });
+            if (order.getDiscount() != null) {
+                order.getDiscount().setTotal(order.getDiscount().getTotal()-1);
+                discountRepo.save(order.getDiscount());
+            }
             cartRepo.deleteAllCartByUsername(order.getUser().getUsername());
         } catch (Exception e) {
             throw new RuntimeException("Lỗi ", e);

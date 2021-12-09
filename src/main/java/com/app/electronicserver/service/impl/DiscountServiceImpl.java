@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,11 @@ public class DiscountServiceImpl implements DiscountService {
 
     @Override
     public Discount getDiscount(String code) {
-        return discountRepo.findById(code).orElse(null);
+        return discountRepo.findById(code).stream()
+                .filter(discount -> discount.getDiscount_status() &&
+                        discount.getExpired_at().getTime() > new Date().getTime() &&
+                        discount.getTotal() > 0)
+                .findFirst()
+                .orElse(null);
     }
 }

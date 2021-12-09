@@ -1,7 +1,10 @@
 package com.app.electronicserver.service.impl;
 
 import com.app.electronicserver.model.Product;
+import com.app.electronicserver.model.ProductCategory;
 import com.app.electronicserver.repo.ProductRepo;
+import com.app.electronicserver.service.ProductCategoryService;
+import com.app.electronicserver.service.ProductImageService;
 import com.app.electronicserver.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +20,7 @@ import java.util.List;
 @Slf4j
 public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
+    private final ProductCategoryService productCategoryService;
 
     @Override
     public List<Product> getProductsByBrandId(Integer brandId) {
@@ -42,7 +46,6 @@ public class ProductServiceImpl implements ProductService {
             return productRepo.findProductByKeywords(keywords);
         }
     }
-
 
 
     @Override
@@ -78,6 +81,30 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findById(Integer id) {
         return productRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Product> getProductsByFilterUserUi(String search, List<String> pcName, List<String> color, Double minPrice, Double maxPrice, Boolean features, Boolean bestSeller) {
+        if (pcName.size() == 0) {
+            productCategoryService.getProductCategory()
+                    .stream()
+                    .map(ProductCategory::getName)
+                    .forEach(pcName::add);
+        }
+        if (color.size() == 0) {
+            productRepo.findAll()
+                    .stream()
+                    .map(Product::getColor)
+                    .forEach(c -> {
+                        if (!color.contains(c)) {
+                            color.add(c);
+                        }
+                    });
+        }
+
+
+
+        return productRepo.getProductsByFilterUserUi('%' + search + '%', pcName, color, minPrice, maxPrice, features, bestSeller);
     }
 
     @Override

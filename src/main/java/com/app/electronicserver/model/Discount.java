@@ -28,4 +28,5 @@ public class Discount implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "Expired_at")
     private Date expired_at;
+    private Boolean discount_status;
 }

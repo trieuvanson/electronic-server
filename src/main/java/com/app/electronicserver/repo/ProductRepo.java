@@ -72,4 +72,19 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
                                       @Param("status") boolean status, @Param("features") boolean features,
                                       @Param("best_seller") boolean best_seller);
 
+    @Query("select p from Product p " +
+            "inner join ProductCategory pc on p.category.id = pc.id " +
+            "inner join Brand b on b.id = pc.brand.id " +
+            "where p.name like :search and pc.name in (:pcName) " +
+            "and p.color in (:color) " +
+            "and p.regular_price between :minPrice and :maxPrice " +
+            "and p.features = :features " +
+            "and p.best_seller = :best_seller " +
+            "and p.status = true")
+    List<Product> getProductsByFilterUserUi(@Param("search") String search, @Param("pcName") List<String> pcName,
+                                            @Param("color") List<String> color,  @Param("minPrice") double minPrice,
+                                            @Param("maxPrice") double maxPrice,
+                                            @Param("features") boolean features,
+                                            @Param("best_seller") boolean best_seller);
+
 }

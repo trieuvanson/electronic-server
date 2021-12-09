@@ -32,6 +32,7 @@ public class Product implements Serializable {
     private Boolean best_seller;
     private String thumbnail;
     private String thumbnail2;
+    private String color;
     private Boolean status;
     //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")

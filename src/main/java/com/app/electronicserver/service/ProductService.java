@@ -24,6 +24,9 @@ public interface ProductService {
 
     Product findById(Integer id);
 
+    List<Product> getProductsByFilterUserUi(String search, List<String> pcName, List<String> color,
+                                            Double minPrice, Double maxPrice, Boolean features, Boolean bestSeller);
+
     List<Product> getProductsByFilter(String search, String pcName, String bName,
                                       Date minDate, Date maxDate, Double maxPrice,
                                       boolean status, boolean features, boolean bestSeller);
