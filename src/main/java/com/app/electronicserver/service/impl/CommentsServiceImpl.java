@@ -1,14 +1,10 @@
 package com.app.electronicserver.service.impl;
 
-import com.app.electronicserver.model.Address;
 import com.app.electronicserver.model.Comments;
-import com.app.electronicserver.repo.AddressRepo;
 import com.app.electronicserver.repo.CommentRepo;
-import com.app.electronicserver.service.AddressService;
 import com.app.electronicserver.service.CommentsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

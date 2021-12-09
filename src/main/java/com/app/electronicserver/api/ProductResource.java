@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("/api/products")
 public class ProductResource {
     private final ProductService PRODUCT_SERVICE;
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Product>> getProducts() {
         return ResponseEntity.ok().body(PRODUCT_SERVICE.getProducts());
     }
@@ -34,10 +34,13 @@ public class ProductResource {
     {
         return ResponseEntity.ok().body(PRODUCT_SERVICE.getProductsByFilter(search, pcname, bname, minDate, maxDate, maxPrice, status, features, bestSeller));
     }
-    @GetMapping("")
-    public ResponseEntity<List<Product>> findProductByKeywords(@RequestParam("timkiem") String timkiem,
-                                                               @RequestParam("filter") String filter) {
-        return ResponseEntity.ok().body(PRODUCT_SERVICE.findProductByKeywordsAndFilter('%' + timkiem + '%', filter));
+    @GetMapping("/filters-ui")
+    public ResponseEntity<List<Product>> findProductByKeywords(@RequestParam("search") String search, @RequestParam("pcname") List<String> pcname,
+                                                               @RequestParam("colors") List<String> colors, @RequestParam("maxPrice") Double maxPrice,
+                                                               @RequestParam("minPrice") Double minPrice,@RequestParam("features") boolean features,
+                                                               @RequestParam("bestSeller") boolean bestSeller,
+                                                               @RequestParam("sort") String sort) {
+        return ResponseEntity.ok().body(PRODUCT_SERVICE.getProductsByFilterUserUi(search, pcname, colors, minPrice, maxPrice, features, bestSeller, sort));
     }
 
     @GetMapping("/price")

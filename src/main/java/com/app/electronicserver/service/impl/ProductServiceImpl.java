@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByFilterUserUi(String search, List<String> pcName, List<String> color, Double minPrice, Double maxPrice, Boolean features, Boolean bestSeller) {
+    public List<Product> getProductsByFilterUserUi(String search, List<String> pcName, List<String> color, Double minPrice, Double maxPrice, Boolean features, Boolean bestSeller, String sort) {
         if (pcName.size() == 0) {
             productCategoryService.getProductCategory()
                     .stream()
@@ -101,10 +102,20 @@ public class ProductServiceImpl implements ProductService {
                         }
                     });
         }
+        List<Product> productList = productRepo.getProductsByFilterUserUi('%' + search + '%', pcName, color, minPrice, maxPrice, features, bestSeller);
+        switch (sort) {
+            case "Mới nhất": productList.sort((p1, p2) -> p2.getCreated_at().compareTo(p1.getCreated_at()));
+            break;
+            case "Cũ nhất":  productList.sort(Comparator.comparing(Product::getCreated_at));
+            break;
+            case "Giá cao nhất":  productList.sort((p1, p2) -> p2.getRegular_price().compareTo(p1.getRegular_price()));
+            break;
+            case "Giá thấp nhất":  productList.sort(Comparator.comparing(Product::getRegular_price));
+            break;
+            default: return productList;
+        }
 
-
-
-        return productRepo.getProductsByFilterUserUi('%' + search + '%', pcName, color, minPrice, maxPrice, features, bestSeller);
+        return productList;
     }
 
     @Override

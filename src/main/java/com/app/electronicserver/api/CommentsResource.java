@@ -1,7 +1,6 @@
 package com.app.electronicserver.api;
 
 import com.app.electronicserver.model.Comments;
-import com.app.electronicserver.model.Comments;
 import com.app.electronicserver.service.CommentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

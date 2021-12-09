@@ -1,6 +1,5 @@
 package com.app.electronicserver.service;
 
-import com.app.electronicserver.model.Address;
 import com.app.electronicserver.model.Comments;
 import org.springframework.stereotype.Service;
 

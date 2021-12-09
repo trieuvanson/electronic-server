@@ -1,6 +1,5 @@
 package com.app.electronicserver.repo;
 
-import com.app.electronicserver.model.Address;
 import com.app.electronicserver.model.Comments;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
