@@ -2,12 +2,8 @@ package com.app.electronicserver.api;
 
 import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.OrderDetail;
-import com.app.electronicserver.reports.QuantityAndName;
 import com.app.electronicserver.service.OrderService;
-import com.app.electronicserver.service.ReportService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +34,8 @@ public class OrderResource {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Order>> getAll(@RequestParam("field") String field) {
-        return ResponseEntity.ok().body(orderService.getAll(Sort.by(Sort.Direction.DESC, field)));
+    public ResponseEntity<List<Order>> getAll() {
+        return ResponseEntity.ok().body(orderService.getAll());
     }
 
 

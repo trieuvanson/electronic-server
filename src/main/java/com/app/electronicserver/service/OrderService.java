@@ -2,8 +2,6 @@ package com.app.electronicserver.service;
 
 import com.app.electronicserver.model.Order;
 import com.app.electronicserver.model.OrderDetail;
-import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,7 +10,7 @@ import java.util.List;
 @Service
 public interface OrderService {
     Order findById(Long id);
-    List<Order> getAll(Sort sort);
+    List<Order> getAll();
     List<Order> getOrdersByUsername(String username);
     Order saveOrder(Order order);
     void removeOrderByIdAndUsername(Long orderId, String username);

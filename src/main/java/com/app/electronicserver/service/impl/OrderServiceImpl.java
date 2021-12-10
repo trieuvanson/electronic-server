@@ -7,7 +7,6 @@ import com.app.electronicserver.repo.CartRepo;
 import com.app.electronicserver.repo.DiscountRepo;
 import com.app.electronicserver.repo.OrderDetailRepo;
 import com.app.electronicserver.repo.OrderRepo;
-import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
 import com.app.electronicserver.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +28,12 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountRepo discountRepo;
     @Override
     public Order findById(Long id) {
-        return orderRepo.findById(id).get();
+        return orderRepo.findById(id).orElse(null);
     }
 
     @Override
-    public List<Order> getAll(Sort sort) {
-        return orderRepo.findAll(sort);
+    public List<Order> getAll() {
+        return orderRepo.findAll();
     }
 
 
@@ -48,9 +47,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             order.setCreated_at(new Date());
             order.setUpdate_at(new Date());
-            if (order.getDiscount() != null) {
-
-            }
+            order.setStatus("Đang chờ xử lý");
             return orderRepo.save(order);
         } catch (Exception e) {
             throw new RuntimeException("Lỗi ", e);
@@ -66,9 +63,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order updateOrders(Order order, Long id) {
         order.setId(id);
-        System.out.println(new Date());
         order.setUpdate_at(new Date());
-        order.setStatus("Mới đặt");
         return orderRepo.save(order);
     }
 
