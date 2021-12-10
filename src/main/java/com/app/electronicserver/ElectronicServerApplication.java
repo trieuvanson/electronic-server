@@ -85,10 +85,10 @@ public class ElectronicServerApplication {
             List<String> color = new ArrayList<>();
             List<String> pcDescription = Arrays.asList("Laptop", "Desktop", "Tablet", "Smartphone");
             String sort = "";
-            productService.getProductsByFilterUserUi("", pcName, color, 0.0, 999999999.0, false, true, sort)
-                    .stream()
-                    .map(Product::getId)
-                    .forEach(System.out::println);
+//            productService.getProductsByFilterUserUi("", pcName, color, 0.0, 999999999.0, false, true, sort)
+//                    .stream()
+//                    .map(Product::getId)
+//                    .forEach(System.out::println);
 
         };
     }
