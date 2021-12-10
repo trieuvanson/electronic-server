@@ -1,1 +1,0 @@
-INSERT INTO `electronic-db`.discounts (id, discount, total, created_at, expired_at) VALUES ('ABCXYZ', 200000, 10, '2021-11-26 19:53:44', '2050-11-26 19:53:46');

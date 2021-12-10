@@ -1,1 +1,0 @@
-INSERT INTO `electronic-db`.favorites (id, createdate, productid, username) VALUES (4, '2021-11-27 01:29:33', 2, 'TVS');

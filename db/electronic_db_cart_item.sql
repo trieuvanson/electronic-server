@@ -1,2 +1,0 @@
-INSERT INTO `electronic-db`.cart_item (id, createdate, quantity, product_id, username) VALUES (3, '2021-11-22 19:00:37', 1, 1, 'TVS1234');
-INSERT INTO `electronic-db`.cart_item (id, createdate, quantity, product_id, username) VALUES (9, '2021-11-27 00:43:10', 0, 1, 'TVS');
