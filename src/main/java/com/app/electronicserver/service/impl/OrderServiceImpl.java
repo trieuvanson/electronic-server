@@ -10,7 +10,6 @@ import com.app.electronicserver.repo.OrderRepo;
 import com.app.electronicserver.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -48,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
             order.setCreated_at(new Date());
             order.setUpdate_at(new Date());
             order.setStatus("Đang chờ xử lý");
+            if (order.getDiscount() != null) {
+
+            }
             return orderRepo.save(order);
         } catch (Exception e) {
             throw new RuntimeException("Lỗi ", e);

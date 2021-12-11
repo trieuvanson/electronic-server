@@ -3,11 +3,7 @@ package com.app.electronicserver.service.impl;
 import com.app.electronicserver.repo.OrderDetailRepo;
 import com.app.electronicserver.repo.OrderRepo;
 import com.app.electronicserver.repo.ProductCategoryRepo;
-import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
-import com.app.electronicserver.reports.QuantityAndName;
-import com.app.electronicserver.reports.RevenueByYear;
-import com.app.electronicserver.reports.TopCategoriesByBrand;
-import com.app.electronicserver.service.ProductCategoryService;
+import com.app.electronicserver.reports.*;
 import com.app.electronicserver.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,5 +40,10 @@ public class ReportServiceImpl  implements ReportService {
     @Override
     public List<RevenueByYear> getRevenueByYear(Integer year) {
         return orderRepo.getRevenueByYear(year);
+    }
+
+    @Override
+    public List<TotalAndName> getTopByUser() {
+        return orderRepo.getTopByUser();
     }
 }

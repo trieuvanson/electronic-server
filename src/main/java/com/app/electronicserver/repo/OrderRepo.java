@@ -1,19 +1,15 @@
 package com.app.electronicserver.repo;
 
-import com.app.electronicserver.model.CartItem;
 import com.app.electronicserver.model.Order;
-import com.app.electronicserver.model.Product;
 import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
 import com.app.electronicserver.reports.RevenueByYear;
+import com.app.electronicserver.reports.TotalAndName;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderRepo extends JpaRepository<Order, Long> {
     @Query(value = "select order from Order order where order.user.username=:username")
@@ -35,6 +31,12 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
             "where year(o.created_at) = :year and o.status like '%Đã nhận hàng%' " +
             "group by month(o.created_at)")
     List<RevenueByYear> getRevenueByYear(@Param("year") Integer year);
+
+    @Query("select new TotalAndName('Khách hàng',sum(o.total), u.fullname) from Order o " +
+            "inner join User u on o.user.username like u.username where o.status like '%Đã nhận hàng%' " +
+            "group by u.fullname")
+    List<TotalAndName> getTopByUser();
+
 
 
 }

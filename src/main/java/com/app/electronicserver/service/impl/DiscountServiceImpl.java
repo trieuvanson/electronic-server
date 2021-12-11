@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +28,13 @@ public class DiscountServiceImpl implements DiscountService {
                         discount.getTotal() > 0)
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Discount> getAllDiscounts() {
+        return discountRepo.findAll()
+                .stream()
+                .sorted((o1, o2) -> o2.getCreated_at().compareTo(o1.getCreated_at()))
+                .collect(Collectors.toList());
     }
 }

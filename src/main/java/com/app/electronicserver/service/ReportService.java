@@ -1,11 +1,7 @@
 package com.app.electronicserver.service;
 
 
-import com.app.electronicserver.reports.OrderRevenueByMothnAndYear;
-import com.app.electronicserver.reports.QuantityAndName;
-import com.app.electronicserver.reports.RevenueByYear;
-import com.app.electronicserver.reports.TopCategoriesByBrand;
-import org.springframework.data.repository.query.Param;
+import com.app.electronicserver.reports.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +12,7 @@ public interface ReportService {
     List<OrderRevenueByMothnAndYear> getOrderRevenueByMonthAndYear(Integer year);
     List<TopCategoriesByBrand> topCategoriesByBrand(String bname);
     List<RevenueByYear> getRevenueByYear(Integer year);
+    List<TotalAndName> getTopByUser();
 
 
 }
