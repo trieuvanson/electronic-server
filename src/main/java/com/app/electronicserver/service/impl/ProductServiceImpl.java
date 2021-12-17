@@ -4,7 +4,6 @@ import com.app.electronicserver.model.Product;
 import com.app.electronicserver.model.ProductCategory;
 import com.app.electronicserver.repo.ProductRepo;
 import com.app.electronicserver.service.ProductCategoryService;
-import com.app.electronicserver.service.ProductImageService;
 import com.app.electronicserver.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +13,7 @@ import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -104,22 +104,33 @@ public class ProductServiceImpl implements ProductService {
         }
         List<Product> productList = productRepo.getProductsByFilterUserUi('%' + search + '%', pcName, color, minPrice, maxPrice, features, bestSeller);
         switch (sort) {
-            case "Mới nhất": productList.sort((p1, p2) -> p2.getCreated_at().compareTo(p1.getCreated_at()));
-            break;
-            case "Cũ nhất":  productList.sort(Comparator.comparing(Product::getCreated_at));
-            break;
-            case "Giá cao nhất":  productList.sort((p1, p2) -> p2.getRegular_price().compareTo(p1.getRegular_price()));
-            break;
-            case "Giá thấp nhất":  productList.sort(Comparator.comparing(Product::getRegular_price));
-            break;
-            default: return productList;
+            case "Mới nhất":
+                productList.sort((p1, p2) -> p2.getCreated_at().compareTo(p1.getCreated_at()));
+                break;
+            case "Cũ nhất":
+                productList.sort(Comparator.comparing(Product::getCreated_at));
+                break;
+            case "Giá cao nhất":
+                productList.sort((p1, p2) -> p2.getRegular_price().compareTo(p1.getRegular_price()));
+                break;
+            case "Giá thấp nhất":
+                productList.sort(Comparator.comparing(Product::getRegular_price));
+                break;
+            default:
+                return productList;
         }
 
         return productList;
     }
 
     @Override
-    public List<Product> getProductsByFilter(String search, String pcName, String bName, Date minDate, Date maxDate, Double maxPrice, boolean status, boolean features, boolean bestSeller) {
-        return productRepo.getProductsByFilter('%' + search + '%', '%' + pcName + '%', '%' + bName + '%', minDate, maxDate, maxPrice, status, features, bestSeller);
+    public List<Product> getProductsByFilter(String search, String pcName, String bName,
+                                             Date minDate, Date maxDate, Double maxPrice,
+                                             boolean status, boolean features, boolean bestSeller) {
+        return productRepo.getProductsByFilter('%' + search + '%', '%' + pcName + '%',
+                '%' + bName + '%', minDate, maxDate, maxPrice, status, features, bestSeller)
+                .stream()
+                .sorted((p1, p2) -> p2.getUpdate_at().compareTo(p1.getUpdate_at()))
+                .collect(Collectors.toList());
     }
 }

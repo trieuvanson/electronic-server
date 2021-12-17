@@ -46,4 +46,9 @@ public class BrandServiceImpl implements BrandService {
     public Brand findById(Integer id) {
         return brandRepo.findById(id).get();
     }
+
+    @Override
+    public List<Brand> findBrandsByName(String name) {
+        return brandRepo.findByBrandsName('%' + name + '%');
+    }
 }

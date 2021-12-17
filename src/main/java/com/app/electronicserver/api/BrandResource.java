@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +28,12 @@ public class BrandResource {
     public ResponseEntity<Brand> getBrand(@PathVariable Integer id) {
         return ResponseEntity.ok().body(BRAND_SERVICE.findById(id));
     }
+    @GetMapping("/filter")
+    public ResponseEntity<List<Brand>> getBrandsByName(@RequestParam String name) {
+        return ResponseEntity.ok().body(BRAND_SERVICE.findBrandsByName(name));
+    }
+
+
 
     @PostMapping("/")
     public ResponseEntity<Brand> saveBrand(@RequestBody Brand brand) {
